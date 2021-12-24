@@ -4,7 +4,7 @@
 	<th:block layout:fragment="content">
 		<div id="wrapper">
 			<div class="container">
-		    	<form action="/board/list" id="frm" method="get">
+		    	<!--<form action="/board/list" id="frm">-->
 				    <div class="col-md-12 mt-4">
 				    	<button type="button" class="btn btn-danger" onclick="fnDelete()">Delete</button>
 				        <button type="button" class="btn btn-primary" onclick="javascript:location.href='/board/write'">Register</button>
@@ -54,7 +54,7 @@
 							</div>
 						</div>
 				    </div>
-			    </form>
+			    <!--</form>-->
 		    </div>
 	    </div>
 	    <script th:inline="javascript">
@@ -84,9 +84,10 @@
 				
 				if (delInpChkLen > 0) {
 					if (confirm("Do you want to delete it?")) {
-						let frm = $("#frm");
+						let frm = $('form[name="frm"]');
+						frm.attr("method","POST");
 						frm.attr("action","/board/delete");
-						frm.attr("method","post");
+						
 						frm.submit();
 					}
 				} else {
